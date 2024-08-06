@@ -27,7 +27,6 @@ bool Splash() {
         if(WPAD_ButtonsDown(0) & WPAD_BUTTON_A) {return false;}
 
         GRRLIB_3dMode(0.1,1000,45,0,0);
-        GRRLIB_CompoStart();
         GRRLIB_FillScreen(0x000000FF);
         GRRLIB_ObjectView(0,flyup,-60, 1,angle,1, 1,1,1);
         GX_Begin(GX_TRIANGLES, GX_VTXFMT0, logoNbFace * 3);
@@ -46,8 +45,6 @@ bool Splash() {
 
             GX_Position3f32(logoPos[logoFac[i+2][0]-1].x,logoPos[logoFac[i+2][0]-1].y,logoPos[logoFac[i+2][0]-1].z);
             GX_Color1u32(col);
-
-
         }
         
         angle += rotSpeed;
