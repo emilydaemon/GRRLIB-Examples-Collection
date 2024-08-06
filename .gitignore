@@ -1,0 +1,8 @@
+build/
+*.dol
+*.elf
+release.zip
+.vs
+.vscode
+/meta/apps
+examples
