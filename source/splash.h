@@ -9,8 +9,8 @@ bool Splash() {
     int i = 0;
 
     float angle = 0;
-    float rotSpeed = 0.1f;
-    const float accel = 0.02f;
+    float rotSpeed = 0.3f;
+    const float maxRotSpeed = 12.0f;
 
     int FadeInTransparency = 0;
     int FadeOutTransparency = 0;
@@ -51,10 +51,7 @@ bool Splash() {
         }
         
         angle += rotSpeed;
-        if (i < 400) {
-            rotSpeed += accel;
-        }
-        
+        if (i < 400) rotSpeed = maxRotSpeed * pow((float)i / 400, 2);   
         i++;
 
         GRRLIB_2dMode();
