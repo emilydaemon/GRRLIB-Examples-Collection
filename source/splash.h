@@ -10,12 +10,14 @@ bool Splash() {
 
     float angle = 0;
     float rotSpeed = 0.1f;
-    const float maxRotSpeed = 12.0f;
+    const float maxRotSpeed = 24.0f;
 
     int FadeInTransparency = 0;
     int FadeOutTransparency = 0;
 
     float flyup = 0.0f;
+
+    GRRLIB_texImg *blur_buffer = GRRLIB_CreateEmptyTexture(640, 480);
 
     GRRLIB_Settings.antialias = true;
 
@@ -53,6 +55,8 @@ bool Splash() {
 
         GRRLIB_2dMode();
 
+	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFAA); // first frame will be black... Whatever.
+
         if(FadeInTransparency < 256) {
             GRRLIB_Rectangle(0,0, rmode->fbWidth, rmode->efbHeight, 0x000000FF - FadeInTransparency, 1);
             FadeInTransparency += 2;   
@@ -65,6 +69,9 @@ bool Splash() {
         }
 
         if (FadeOutTransparency > 256) break;
+
+        GRRLIB_CompoEnd(0, 0, blur_buffer);
+	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFFF);
 
         GRRLIB_Render();
     }
