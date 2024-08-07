@@ -71,6 +71,7 @@ bool Splash() {
         if (FadeOutTransparency > 256) break;
 
         GRRLIB_CompoEnd(0, 0, blur_buffer);
+	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFFF);
 
         GRRLIB_Render();
     }
