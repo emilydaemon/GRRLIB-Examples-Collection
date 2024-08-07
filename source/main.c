@@ -92,6 +92,7 @@ int main(int argc, char **argv) {
     GRRLIB_Init();
     WPAD_Init();
 
-    Menu(Splash()); //what
+    bool showFadeIn = Splash();
+    Menu(showFadeIn);
     exit(0);
 }

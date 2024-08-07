@@ -13,7 +13,7 @@ void credits() {
 
     while(1) {
         WPAD_ScanPads();
-        if(WPAD_ButtonsDown(0) & WPAD_BUTTON_1) break;
+        if(WPAD_ButtonsDown(0) & (WPAD_BUTTON_1 | WPAD_BUTTON_HOME)) break;
 
         GRRLIB_DrawImg(0, 480 - scrollPos, credits_text, 0, 1, 1, 0xFFFFFFFF);
         GRRLIB_DrawImg(0, 0, credits_logo, 0, 1, 1, 0xFFFFFFFF);
