@@ -3,7 +3,7 @@
 GRRLIB Examples Collection is a collection of all* of the examples bundled with GRRLIB. 19 examples are available:
 
 3D_CubedTileDemo:
-TileDemo but it's a rotating cube.
+3D_CubedTileDemo is TileDemo but it's a rotating cube.
 
 3D_Light1:
 3D_Light1 uses a rotating torus and two orbs to show GRRLIB lighting.

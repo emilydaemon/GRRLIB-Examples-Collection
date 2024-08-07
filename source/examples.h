@@ -37,7 +37,7 @@ typedef struct {
 } Example;
 
 Example examples[] = {
-    {"3D_CubedTileDemo", "TileDemo but it's a rotating cube.", 
+    {"3D_CubedTileDemo", "3D_CubedTileDemo is TileDemo but it's a rotating cube.", 
     ThreeD_CubedTileDemo_main},
     {"3D_Light1", "3D_Light1 uses a rotating torus and two orbs to show GRRLIB lighting.", 
     ThreeD_LightOne_main},
