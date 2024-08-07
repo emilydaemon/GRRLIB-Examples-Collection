@@ -10,7 +10,7 @@ bool Splash() {
 
     float angle = 0;
     float rotSpeed = 0.1f;
-    const float maxRotSpeed = 12.0f;
+    const float maxRotSpeed = 24.0f;
 
     int FadeInTransparency = 0;
     int FadeOutTransparency = 0;
