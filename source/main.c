@@ -44,7 +44,7 @@ void Menu(bool showFadeIn) {
             if (page >= sizeof(examples) / sizeof(examples[0])) page = 0;
         }
 
-        GRRLIB_Printf(3,3, tex_font, 0x000000FF, 0.8f, "GRRLIB Examples Collection 0.1");
+        GRRLIB_Printf(3,3, tex_font, 0x000000FF, 0.8f, "GRRLIB Examples Collection 0.1.1");
         GRRLIB_Printf(640 - (8.8*22) - 3,3, tex_font, 0x000000FF, 0.8f, "Press (1) for credits");
 
         GRRLIB_Printf((640 - (strlen(examples[page].title) * 22) ) / 2, 60, tex_font, 0x000000FF, 2, examples[page].title);
