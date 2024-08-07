@@ -17,6 +17,8 @@ bool Splash() {
 
     float flyup = 0.0f;
 
+    GRRLIB_texImg *blur_buffer = GRRLIB_CreateEmptyTexture(640, 480);
+
     GRRLIB_Settings.antialias = true;
 
     GRRLIB_SetBackgroundColour(0x00, 0x00, 0x00, 0xFF);
@@ -56,6 +58,8 @@ bool Splash() {
 
         GRRLIB_2dMode();
 
+	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFAA); // first frame will be black... Whatever.
+
         if(FadeInTransparency < 256) {
             GRRLIB_Rectangle(0,0, rmode->fbWidth, rmode->efbHeight, 0x000000FF - FadeInTransparency, 1);
             FadeInTransparency += 2;   
@@ -68,6 +72,8 @@ bool Splash() {
         }
 
         if (FadeOutTransparency > 256) break;
+
+        GRRLIB_CompoEnd(0, 0, blur_buffer);
 
         GRRLIB_Render();
     }
