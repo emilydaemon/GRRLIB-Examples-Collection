@@ -101,7 +101,7 @@ const u8 *ExamplesTextures[] = {
 };
 
 // Function to initialize the previews
-void Examples_LoadTextures() {
+void Examples_LoadPreviewTextures() {
     for (size_t i = 0; i < sizeof(examples) / sizeof(Example); i++) {
         if (i < sizeof(ExamplesTextures) / sizeof(ExamplesTextures[0]) && ExamplesTextures[i] != NULL) {
             examples[i].preview = GRRLIB_LoadTexture(ExamplesTextures[i]);

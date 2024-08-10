@@ -23,7 +23,7 @@ void Menu(bool showFadeIn) {
     GRRLIB_BMFX_FlipH(tex_dpad_hint_right, tex_dpad_hint_left);
     GRRLIB_FlushTex(tex_dpad_hint_left);
 
-    Examples_LoadTextures();
+    Examples_LoadPreviewTextures();
 
 
     GRRLIB_SetBackgroundColour(250, 250, 250, 255);
