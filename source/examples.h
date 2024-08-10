@@ -59,7 +59,7 @@ Example examples[] = {
     ThreeD_sampleFive_main},
     {"basic_drawing", "basic_drawing shows the text, sprite, and image rendering of GRRLIB on multiple pages.", 
     basic_drawing_main},
-    {"bitmap_fx", "bitmap_fx shows the various effects you can apply to bitmaps on multiple pages", 
+    {"bitmap_fx", "bitmap_fx shows the various effects you can apply to bitmaps on multiple pages.", 
     bitmap_fx_main},
     {"blending", "blending demonstrates GRRLIB's various blending modes with a blob you can move with the Wii Remote.", 
     blending_main},
