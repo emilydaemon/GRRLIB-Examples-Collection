@@ -4,7 +4,7 @@
 #include <wiiuse/wpad.h>
 
 #include <dpad_hint_right_png.h>
-#include <Letter_Gothic_Std_14_Bold_png.h>
+#include <FreeMonoBold_ttf.h>
 
 #include "splash.h"
 #include "credits.h"
@@ -14,8 +14,8 @@
 void Menu(bool showFadeIn) {
     int page = 0;
     int FadeInTransparency = 0;
-    GRRLIB_texImg *tex_font = GRRLIB_LoadTexture(Letter_Gothic_Std_14_Bold_png);
-    GRRLIB_InitTileSet(tex_font, 11, 24, 32);
+    
+    GRRLIB_ttfFont *tex_font = GRRLIB_LoadTTF(FreeMonoBold_ttf, FreeMonoBold_ttf_size);
     
     GRRLIB_texImg *tex_dpad_hint_right = GRRLIB_LoadTexture(dpad_hint_right_png);
     
@@ -24,7 +24,6 @@ void Menu(bool showFadeIn) {
     GRRLIB_FlushTex(tex_dpad_hint_left);
 
     Examples_LoadPreviewTextures();
-
 
     GRRLIB_SetBackgroundColour(250, 250, 250, 255);
     GRRLIB_Settings.antialias = false;
@@ -44,17 +43,20 @@ void Menu(bool showFadeIn) {
             if (page >= sizeof(examples) / sizeof(examples[0])) page = 0;
         }
 
-        GRRLIB_Printf(3,3, tex_font, 0x000000FF, 0.8f, "GRRLIB Examples Collection 0.1.1");
-        GRRLIB_Printf(640 - (8.8*22) - 3,3, tex_font, 0x000000FF, 0.8f, "Press (1) for credits");
+        const char *str_name = "GRRLIB Examples Collection 0.1.1";
+        const char *str_credits = "Press (1) for credits";
 
-        GRRLIB_Printf((640 - (strlen(examples[page].title) * 22) ) / 2, 60, tex_font, 0x000000FF, 2, examples[page].title);
+        GRRLIB_PrintfTTF(3,3, tex_font, str_name, 16, 0x000000FF);
+        GRRLIB_PrintfTTF(640 - GRRLIB_WidthTTF(tex_font, str_credits, 16) - 3,3, tex_font, str_credits, 16, 0x000000FF);
+
+        GRRLIB_PrintfTTF((640 - GRRLIB_WidthTTF(tex_font, examples[page].title, 48)) / 2, 60, tex_font, examples[page].title, 48, 0x000000FF);
         
         GRRLIB_DrawImg(25, 405, tex_dpad_hint_left, 0, 0.5, 0.5, 0xFFFFFFFF);
         GRRLIB_DrawImg(565, 405, tex_dpad_hint_right, 0, 0.5, 0.5, 0xFFFFFFFF);
        
         GRRLIB_DrawImg(160, 150, examples[page].preview, 0, 1, 1, 0xFFFFFFFF);
         
-        GRRLIB_Printf_WordWrap(100, 480-96, tex_font, 0x000000FF, 1, 40, examples[page].description);
+        GRRLIB_PrintfTTF_WordWrap(100, 480-96, tex_font, 0x000000FF, 16, 40, examples[page].description);
 
         // draw some circles to show which page were on
 
@@ -82,7 +84,7 @@ void Menu(bool showFadeIn) {
 
     GRRLIB_FreeTexture(tex_dpad_hint_right);
     GRRLIB_FreeTexture(tex_dpad_hint_left);
-    GRRLIB_FreeTexture(tex_font);
+    GRRLIB_FreeTTF(tex_font);
 
     GRRLIB_Exit();
 }

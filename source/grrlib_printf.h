@@ -46,81 +46,37 @@ void wrap_text(const char* text, char* wrapped_text, int max_length) {
     wrapped_text[pos] = '\0'; // Null-terminate the wrapped text
 }
 
-// Modified GRRLIB_Printf function using word wrapping
-void GRRLIB_Printf_WordWrap(const f32 xpos, const f32 ypos,
-                            const GRRLIB_texImg *tex, const u32 color,
-                            const f32 zoom, const int max_length, const char *text, ...) {
-    if (tex == NULL || tex->data == NULL) {
-        return;
-    }
-
-    char tmp[1024];
+void GRRLIB_PrintfTTF_WordWrap(f32 xpos, f32 ypos, GRRLIB_ttfFont *font, u32 color, f32 font_size, int max_length, const char *text, ...) {
+    char buffer[1024];
     char wrapped_text[2048];
-    const f32 offset = tex->tilew * zoom;
+    va_list args;
+    va_start(args, text);
+    vsnprintf(buffer, sizeof(buffer), text, args);
+    va_end(args);
 
-    f32 current_x = xpos;
-    f32 current_y = ypos;
+    wrap_text(buffer, wrapped_text, max_length);
 
-    va_list argp;
-    va_start(argp, text);
-    vsnprintf(tmp, sizeof(tmp), text, argp);
-    va_end(argp);
+    char *line_start = wrapped_text;
+    char *line_end = wrapped_text;
+    f32 current_ypos = ypos;
 
-    // Wrap the text
-    wrap_text(tmp, wrapped_text, max_length);
-
-    // Draw the wrapped text
-    for (int i = 0; wrapped_text[i] != '\0'; i++) {
-        if (wrapped_text[i] == '\n') {
-            current_x = xpos;
-            current_y += tex->tileh * zoom;
-            continue;
+    while (*line_end) {
+        while (*line_end && *line_end != '\n') {
+            line_end++;
         }
-        GRRLIB_DrawTile(current_x, current_y, tex, 0, zoom, zoom, color,
-                        wrapped_text[i] - tex->tilestart);
-        current_x += offset;
-    }
-}
 
-void GRRLIB_Printf_Newline(const f32 xpos, const f32 ypos,
-                           const GRRLIB_texImg *tex, const u32 color,
-                           const f32 zoom, const char *text, ...) {
-    if (tex == NULL || tex->data == NULL) {
-        return;
-    }
+        char temp_char = *line_end;
+        *line_end = '\0';
 
-    char tmp[1024];
-    const f32 offset = tex->tilew * zoom;
-    const f32 lineHeight = tex->tileh * zoom;
+        GRRLIB_PrintfTTF(xpos, current_ypos, font, line_start, font_size, color);
 
-    va_list argp;
-    va_start(argp, text);
-    const int size = vsnprintf(tmp, sizeof(tmp), text, argp);
-    va_end(argp);
-
-    f32 currentX = xpos;
-    f32 currentY = ypos;
-
-    for (int i = 0; i < size; i++) {
-        if (tmp[i] == '\n') {
-            currentX = xpos;
-            currentY += lineHeight;
-        } else {
-            GRRLIB_DrawTile(currentX, currentY, tex, 0, zoom, zoom, color,
-                            tmp[i] - tex->tilestart);
-            currentX += offset;
+        *line_end = temp_char;
+        if (*line_end == '\n') {
+            line_end++;
         }
+        line_start = line_end;
+        current_ypos += font_size;
     }
-}
-
-void GRRLIB_Putchar(const f32 xpos, const f32 ypos,
-                    const GRRLIB_texImg *tex, const u32 color,
-                    const f32 zoom, const char character) {
-    if (tex == NULL || tex->data == NULL) {
-        return;
-    }
-
-    GRRLIB_DrawTile(xpos, ypos, tex, 0, zoom, zoom, color, character - tex->tilestart);
 }
 
 #endif
