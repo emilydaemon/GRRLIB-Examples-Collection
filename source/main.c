@@ -56,7 +56,7 @@ void Menu(bool showFadeIn) {
        
         GRRLIB_DrawImg(160, 150, examples[page].preview, 0, 1, 1, 0xFFFFFFFF);
         
-        GRRLIB_PrintfTTF_WordWrap(100, 480-96, tex_font, 0x000000FF, 16, 40, examples[page].description);
+        GRRLIB_PrintfTTF_WordWrap(100, 480-96, tex_font, 0x000000FF, 16, 440, examples[page].description);
 
         // draw some circles to show which page were on
 
