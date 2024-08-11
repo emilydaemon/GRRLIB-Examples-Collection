@@ -44,7 +44,7 @@ void Menu(bool showFadeIn) {
             if (page >= sizeof(examples) / sizeof(examples[0])) page = 0;
         }
 
-        const char *str_name = "GRRLIB Examples Collection 0.1.1";
+        const char *str_name = "GRRLIB Examples Collection 0.1.2";
         const char *str_credits = "Press (1) for credits";
 
         GRRLIB_PrintfTTF(3,3, tex_font, str_name, 16, 0x000000FF);

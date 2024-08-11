@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <app version="1">
 	<name>GRRLIB Examples Collection</name>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<release_date>20240806000000</release_date>
 	<coder>boreal</coder>
 	<short_description>A colletion of the examples bundled with GRRLIB. </short_description>
