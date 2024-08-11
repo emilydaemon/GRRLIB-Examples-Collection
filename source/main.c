@@ -14,6 +14,7 @@
 void Menu(bool showFadeIn) {
     int page = 0;
     int FadeInTransparency = 0;
+    const int prvBorder = 2;
     
     GRRLIB_ttfFont *tex_font = GRRLIB_LoadTTF(FreeMonoBold_ttf, FreeMonoBold_ttf_size);
     
@@ -54,6 +55,7 @@ void Menu(bool showFadeIn) {
         GRRLIB_DrawImg(25, 405, tex_dpad_hint_left, 0, 0.5, 0.5, 0xFFFFFFFF);
         GRRLIB_DrawImg(565, 405, tex_dpad_hint_right, 0, 0.5, 0.5, 0xFFFFFFFF);
        
+        GRRLIB_Rectangle(160 - prvBorder, 150 - prvBorder, examples[page].preview->w + (prvBorder * 2), examples[page].preview->h + (prvBorder * 2), 0x333333FF, 1);
         GRRLIB_DrawImg(160, 150, examples[page].preview, 0, 1, 1, 0xFFFFFFFF);
         
         GRRLIB_PrintfTTF_WordWrap(100, 480-96, tex_font, 0x000000FF, 16, 440, examples[page].description);

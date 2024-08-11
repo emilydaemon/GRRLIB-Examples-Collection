@@ -55,7 +55,7 @@ bool Splash() {
 
         GRRLIB_2dMode();
 
-	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFAA); // first frame will be black... Whatever.
+	    GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFAA); // first frame will be black... Whatever.
 
         if(FadeInTransparency < 256) {
             GRRLIB_Rectangle(0,0, rmode->fbWidth, rmode->efbHeight, 0x000000FF - FadeInTransparency, 1);
@@ -71,7 +71,7 @@ bool Splash() {
         if (FadeOutTransparency > 256) break;
 
         GRRLIB_CompoEnd(0, 0, blur_buffer);
-	GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFFF);
+	    GRRLIB_DrawImg(0, 0, blur_buffer, 0, 1, 1, 0xFFFFFFFF);
 
         GRRLIB_Render();
     }
